@@ -64,23 +64,21 @@ const Api = () => {
  }
 
 		return (
-				<div>
-					{
-						quotes.map((quotes) =>{
-							const {author, content} = quotes
-							return (
-								<>
-									<h2 className='title'>{author}: </h2>
-									<h3 className="content">{content}</h3>
-								</>
-							)
-						})
-					}
-					<input type="number" id='numQuotes' min='1' max='20' onChange={((e) => setNumQuotes(e.target.value))}/>
-					<button className="btn" onClick={()=>{setCounter(counter + 1)}}>ReGenerate</button>
-					<h4 className="counter">Number of Quotes Generated: {counter}</h4>
-				</div>
-		)
+    <div className="main-container">
+      {quotes.map((quote) => {
+        const { author, content } = quote;
+        return (
+          <div className='material'>
+            <h2 className='title'>{author}: </h2>
+            <h3 className="content">{content}</h3>
+          </div>
+        );
+      })}
+      <input type="number" class='numQuotes' min='1' max='5' placeholder='1' onChange={(e) => setNumQuotes(e.target.value)} />
+      <button className="btn" onClick={() => { setCounter(counter + Number(numQuotes)) }}>ReGenerate</button>
+      <h4 className="counter">Number of Quotes Generated: {counter}</h4>
+    </div>
+  );
 }
 
 export default Api;
