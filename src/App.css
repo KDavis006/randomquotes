@@ -93,3 +93,8 @@ body {
  margin-top: 10px;
  color: white;
 }
+
+.err{
+  color: #e040ff;
+  text-align: center;
+}

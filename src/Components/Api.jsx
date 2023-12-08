@@ -3,8 +3,7 @@ import { useState, useEffect } from 'react';
 const Api = () => {
 	const [quotes, setQuotes] = useState([])
 	const [counter, setCounter] = useState(0)
-	const [numQuotes, setNumQuotes] = useState(0)
-	const url = 'https://api.quotable.io/random?limit=3';
+	const [numQuotes, setNumQuotes] = useState(1)
 
 
 
@@ -31,7 +30,7 @@ const Api = () => {
 
 
 		useEffect(() => {
-  		fetch(url)
+  		fetch(`https://api.quotable.io/quotes/random?limit=${numQuotes}`)
   		.then((response) => {
    		if(response.status >= 200 && response.status <= 299) {
     		return response.json
@@ -53,15 +52,15 @@ const Api = () => {
 		if(isLoading) {
   return (
    <div>
-				<h1>Welcome: {user}</h1>
-    <h1>Loading.....</h1>
+				<h1 className='err'>Welcome: {user}</h1>
+    <h1 className='err'>Loading.....</h1>
    </div>
   )
  }
  if(isError) {
   return (
    <div>
-    <h1>Error...</h1>
+    <h1 className='err'>Error...</h1>
    </div>
   )
  }
@@ -77,7 +76,7 @@ const Api = () => {
           </div>
         );
       })}
-      <input type="number" class='numQuotes' min='1' max='5' placeholder='1' onChange={(e) => setNumQuotes(e.target.value)} />
+      <input type="number" class='numQuotes' min='1' max='5' defaultValue='1' onChange={(e) => setNumQuotes(e.target.value)} />
       <button className="btn" onClick={() => { setCounter(counter + Number(numQuotes)) }}>ReGenerate</button>
       <h4 className="counter">Number of Quotes Generated: {counter}</h4>
     </div>
