@@ -19,6 +19,7 @@ const Api = () => {
 				}).then(data=>{
 				setQuotes(data);
 				console.log(data)
+				// eslint-disable-next-line react-hooks/exhaustive-deps
 		})}, [counter])
 
 
@@ -26,6 +27,7 @@ const Api = () => {
 		const [isLoading, setIsLoading] = useState(true)
  	const [isError, setIsError] = useState(false)
 		const [user, setUser] = useState('Default User')
+
 
 
 		useEffect(() => {
@@ -43,7 +45,7 @@ const Api = () => {
   			setUser(login)
   			setIsLoading(false)
  			}).catch((error) => {console.log(error)})
-		}, [])
+		}, [counter])
 
 
 
@@ -51,6 +53,7 @@ const Api = () => {
 		if(isLoading) {
   return (
    <div>
+				<h1>Welcome: {user}</h1>
     <h1>Loading.....</h1>
    </div>
   )
